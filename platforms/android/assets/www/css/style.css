@@ -1,0 +1,13 @@
+/* Empty. Add your own CSS if you like */
+.item.item-avatar
+{
+	background: #54FF89;
+
+}
+
+.list.card
+{
+	border-radius: 10px; !important
+	background: #222;
+}
+
