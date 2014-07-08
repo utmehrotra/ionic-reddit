@@ -6,6 +6,7 @@
 /home/ut/code/Ionic/Funny gifs/platforms/android/res/values/strings.xml \
 /home/ut/code/Ionic/Funny gifs/platforms/android/res/drawable-port-hdpi/screen.png \
 /home/ut/code/Ionic/Funny gifs/platforms/android/res/drawable-xhdpi/icon.png \
+/home/ut/code/Ionic/Funny gifs/platforms/android/res/drawable/reddit.png \
 /home/ut/code/Ionic/Funny gifs/platforms/android/res/drawable/icon.png \
 /home/ut/code/Ionic/Funny gifs/platforms/android/res/drawable-port-ldpi/screen.png \
 /home/ut/code/Ionic/Funny gifs/platforms/android/res/drawable-land-xhdpi/screen.png \

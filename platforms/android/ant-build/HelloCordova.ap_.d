@@ -6,6 +6,7 @@
 /home/ut/code/Ionic/Funny gifs/platforms/android/res/values/strings.xml \
 /home/ut/code/Ionic/Funny gifs/platforms/android/res/drawable-port-hdpi/screen.png \
 /home/ut/code/Ionic/Funny gifs/platforms/android/res/drawable-xhdpi/icon.png \
+/home/ut/code/Ionic/Funny gifs/platforms/android/res/drawable/reddit.png \
 /home/ut/code/Ionic/Funny gifs/platforms/android/res/drawable/icon.png \
 /home/ut/code/Ionic/Funny gifs/platforms/android/res/drawable-port-ldpi/screen.png \
 /home/ut/code/Ionic/Funny gifs/platforms/android/res/drawable-land-xhdpi/screen.png \
@@ -19,6 +20,7 @@
 /home/ut/code/Ionic/Funny gifs/platforms/android/ant-build/res/drawable-land-hdpi/screen.png \
 /home/ut/code/Ionic/Funny gifs/platforms/android/ant-build/res/drawable-port-hdpi/screen.png \
 /home/ut/code/Ionic/Funny gifs/platforms/android/ant-build/res/drawable-xhdpi/icon.png \
+/home/ut/code/Ionic/Funny gifs/platforms/android/ant-build/res/drawable/reddit.png \
 /home/ut/code/Ionic/Funny gifs/platforms/android/ant-build/res/drawable/icon.png \
 /home/ut/code/Ionic/Funny gifs/platforms/android/ant-build/res/drawable-port-ldpi/screen.png \
 /home/ut/code/Ionic/Funny gifs/platforms/android/ant-build/res/drawable-land-xhdpi/screen.png \
@@ -109,6 +111,7 @@
 /home/ut/code/Ionic/Funny gifs/platforms/android/assets/www/lib/ionic/scss/ionicons/_ionicons-variables.scss \
 /home/ut/code/Ionic/Funny gifs/platforms/android/assets/www/lib/ionic/scss/ionicons/_ionicons-icons.scss \
 /home/ut/code/Ionic/Funny gifs/platforms/android/assets/www/img/ionic.png \
+/home/ut/code/Ionic/Funny gifs/platforms/android/assets/www/img/reddit.png \
 /home/ut/code/Ionic/Funny gifs/platforms/android/assets/www/plugins/com.ionic.keyboard \
 /home/ut/code/Ionic/Funny gifs/platforms/android/assets/www/plugins/org.apache.cordova.device \
 /home/ut/code/Ionic/Funny gifs/platforms/android/assets/www/plugins/com.ionic.keyboard/www \

@@ -17,17 +17,30 @@ angular.module('starter', ['ionic'])
     }
   });
 }).service('Fetch', ['$http','$log', Fetch])
-.controller('AppCntrl', ['$scope','$log', 'Fetch', AppCntrl]);
+.controller('AppCntrl', ['$scope','$log', 'Fetch','$http', AppCntrl]);
 
-function AppCntrl($scope,$log,Fetch)
+function AppCntrl($scope,$log,Fetch,$http)
 {
   $scope.posts = [];
+
+
   $scope.refresh = function()
   {
-    
+  console.log("refreshing");  
   Fetch.getdata($scope);
- // alert("Refreshed");
+ 
   }
+
+$scope.load_more = function() {
+    $http.get('http://www.reddit.com/r/funny/hot/.json').success(function(items) {
+      useItems(items);
+      $scope.$broadcast('scroll.infiniteScrollComplete');
+    });
+  };
+
+  $scope.$on('stateChangeSuccess', function() {
+    $scope.loadMore();
+  });
  
 }
 
@@ -40,9 +53,9 @@ function Fetch($http,$log)
      if (response.data.error) {
          return null;
      } else {
-      //alert(response.data.children);
          console.log(response.data.data.children);
          $scope.posts = response.data.data.children;
+         $scope.$broadcast("scroll.refreshComplete");
          return response.data.data.children;
      }
  });
@@ -51,50 +64,3 @@ function Fetch($http,$log)
 }
 
 
-
-
-/*
-function Fetch($http,$log)
-{
-  this.getdata = function($scope)
-  {
-    $http.get("http://www.reddit.com/r/funny/hot/.json")
-    .then(function(result)
-    {
-     // $scope.posts = result.posts;
-     console.log(result.children);
-      $scope.$broadcast("scroll.refreshComplete");
-      return result.children;
-    });
-  };
-}
-
-/*.service('Fetch', ['$http','$log', Fetch])
-.controller('AppCntrl', ['$scope','$log', 'Fetch', AppCntrl]);
-
-function AppCntrl($scope,$log,Fetch)
-{
-  //$scope.posts = [];
-  $scope.refresh = function()
-  {
-    
-  Fetch.getdata($scope);
-  alert("Refreshed");
-  }
- 
-}
-
-function Fetch($http,$log)
-{
-  this.getdata = function($scope)
-  {
-    $http.jsonp("http://public-api.wordpress.com/rest/v1/freshly-pressed?callback=JSON_CALLBACK")
-    .success(function(result)
-    {
-      $scope.posts = result.posts;
-      $scope.$broadcast("scroll.refreshComplete");
-    });
-  };
-}
-
-*/

@@ -21,17 +21,22 @@
     <!-- your app's js -->
     <script src="js/app.js"></script>
   </head>
-  <body ng-app="starter" ng-controller="AppCntrl" class="xbody">
+  <body ng-app="starter" ng-controller="AppCntrl" class="xbody" ng-touch="refresh()">
 
     <ion-pane>
       <ion-header-bar class="bar-calm">
         <h1 class="title">Funny Gifs</h1>
+        <img class = "header-img" src="img/reddit.png">
       </ion-header-bar>
       
       
 
       <ion-content>
       <ion-refresher on-refresh="refresh()"></ion-refresher>
+<div ng-show="!posts.length"> <center>
+              <br>Pull to refresh 
+            </center></div>
+      <ion-onscroll [has-bouncing = "true"] onscroll="load_more()">
       <div class="list card" ng-repeat="fun in posts">
         <div class="item item-avatar">
         <img ng-src=" {{ fun.data.thumbnail }}"/>
@@ -42,11 +47,9 @@
         <img ng-src=" {{ fun.data.url }}">
 
       </div>
-      <a class="item item-icon-left assertive" href="#">
-      <i class="icon ion-music-note"></i>
-      </a>
-      </div>
       
+      </div>
+      </ion-onscroll>
       </ion-content>
     </ion-pane>
   </body>

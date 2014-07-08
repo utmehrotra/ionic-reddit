@@ -12,12 +12,12 @@
     <feature name="Device">
         <param name="android-package" value="org.apache.cordova.device.Device" />
     </feature>
-    <name>HelloCordova</name>
+    <name>Reddit</name>
     <description>
-        An Ionic Framework and Cordova project.
+        Reddit funny gifs by Utkarsh
     </description>
-    <author email="hi@ionicframework" href="http://ionicframework.com/">
-      Ionic Framework Team
+    <author email="ut.mehrotra@gmail.com" href="http://ionicframework.com/">
+      Utkarsh Mehrotra
     </author>
     <content src="index.html" />
     <access origin="*" />

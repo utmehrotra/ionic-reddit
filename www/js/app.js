@@ -9,96 +9,78 @@ angular.module('starter', ['ionic'])
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
-    if(window.cordova && window.cordova.plugins.Keyboard) {
+    if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
-    if(window.StatusBar) {
+    if (window.StatusBar) {
       StatusBar.styleDefault();
     }
   });
-}).service('Fetch', ['$http','$log', Fetch])
-.controller('AppCntrl', ['$scope','$log', 'Fetch', AppCntrl]);
+}).service('Fetch', ['$http', '$log', Fetch])
+  .service('loadMore', ['$http', loadMore])
+  .controller('AppCntrl', ['$scope', '$rootScope', '$log', 'Fetch', 'loadMore', AppCntrl]);
 
-function AppCntrl($scope,$log,Fetch,$ionicLoading)
-{
+function AppCntrl($scope, $rootScope, $log, Fetch, loadMore) {
+  $rootScope.after = "dsdhfshk";
   $scope.posts = [];
+  $scope.after = '';
 
-
-  $scope.refresh = function()
-  {
-  console.log("refreshing");  
-  Fetch.getdata($scope);
-  
- 
-  }
- 
-}
-
-
-function Fetch($http,$log)
-{
-  this.getdata = function($scope)
-  {
-    return $http.get('http://www.reddit.com/r/funny/hot/.json').then(function (response) {
-     if (response.data.error) {
-         return null;
-     } else {
-      //   console.log(response.data.data.children);
-         $scope.posts = response.data.data.children;
-         $scope.$broadcast("scroll.refreshComplete");
-        $ionicLoading.hide();
-         return response.data.data.children;
-     }
- });
-  }
- 
-}
-
-
-
-
-/*
-function Fetch($http,$log)
-{
-  this.getdata = function($scope)
-  {
-    $http.get("http://www.reddit.com/r/funny/hot/.json")
-    .then(function(result)
-    {
-     // $scope.posts = result.posts;
-     console.log(result.children);
-      $scope.$broadcast("scroll.refreshComplete");
-      return result.children;
-    });
-  };
-}
-
-/*.service('Fetch', ['$http','$log', Fetch])
-.controller('AppCntrl', ['$scope','$log', 'Fetch', AppCntrl]);
-
-function AppCntrl($scope,$log,Fetch)
-{
-  //$scope.posts = [];
-  $scope.refresh = function()
-  {
+  $scope.refresh = function() {
     
-  Fetch.getdata($scope);
-  alert("Refreshed");
+    console.log("refreshing");
+    Fetch.getdata($scope);
+    //console.log($scope.loader);
   }
- 
-}
 
-function Fetch($http,$log)
-{
-  this.getdata = function($scope)
-  {
-    $http.jsonp("http://public-api.wordpress.com/rest/v1/freshly-pressed?callback=JSON_CALLBACK")
-    .success(function(result)
-    {
-      $scope.posts = result.posts;
-      $scope.$broadcast("scroll.refreshComplete");
-    });
+  $scope.load_more = function() {
+    console.log("Load More");
+
+    loadMore.getdata($scope);
+    $scope.$broadcast('scroll.infiniteScrollComplete');
   };
+
 }
 
-*/
+
+function Fetch($http, $log) {
+  this.getdata = function($scope) {
+    console.log();
+    $http.get('http://www.reddit.com/r/funny/hot/.json').then(function(response) {
+      if (response.data.error) {
+        return null;
+      } else {
+        console.log(response.data.data.children);
+        $scope.posts = response.data.data.children;
+        //$rootScope.after = response.data.data.after;
+        $scope.$broadcast("scroll.refreshComplete");
+        return response.data.data.children;
+      }
+    });
+  }
+  // return this.getdata;
+}
+
+
+function loadMore($http) {
+  this.getdata = function($scope) {
+    console.log("I am here loadmore" + $scope.after);
+    $http.get('http://www.reddit.com/r/funny/hot/.json?after=' + $scope.after).then(function(response) {
+      // useItems(items);
+      if (response.data.error) {
+
+        return null;
+      } else {
+        console.log(response.data.data.children);
+        $scope.posts.push.apply($scope.posts, response.data.data.children);
+        $scope.after = response.data.data.after;
+        $scope.$broadcast("scroll.refreshComplete");
+        $scope.$broadcast('scroll.infiniteScrollComplete');
+        return response.data.data;
+      }
+
+
+    });
+
+  }
+
+}
